@@ -8,10 +8,27 @@
 wd <- "~/Desktop/CDPH_breastcancer"
 setwd(wd)
 
-library(readr)  # version 1.1.1
-library(Hmisc)  # version 4.0-3
-library(dplyr)  # version 0.7.4
-library(civis)  # version 1.1.0
+# required packages
+packages = c("readr", # version 1.1.1
+            "Hmisc",  # version 4.0-3
+            "dplyr",  # version 0.7.4
+            "civis"   # version 1.1.0
+            )
+
+# function that loads required packages; if not installed, then installs package first
+loadPackage <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+  if (length(new.pkg)) 
+    install.packages(new.pkg, dependencies = TRUE)
+  sapply(pkg, require, character.only = TRUE)
+}
+
+# loop through necessary packages and install/load
+for(package in packages){
+  loadPackage(package)
+}
+
+
 options(civis.default_db = "redshift-general", scipen = 999)
 
 
