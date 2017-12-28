@@ -41,7 +41,7 @@ We set the cutoff for the health insurance model at 0.5, and we set the cutoff f
 ## How to Run the Code
 Python 3 and the R programming language were used to develop both models.
 
-The R programming language is free and available for download at https://cran.r-project.org. We recommend RStudio as the IDE for this project. It is also free and cdan be downloaded at https://www.rstudio.com/.
+The R programming language is free and available for download at https://cran.r-project.org. We recommend RStudio as the IDE for this project. It is also free and can be downloaded at https://www.rstudio.com/.
 
 We used Jupyter Notebooks to write and run our Python 3 code. Jupyter Notebooks allow you to run your code cell by cell, so that it can be broken up into small chunks. Python 3 and Jupyter Notebooks can be installed on your machine for free by downloading Anaconda. This link has installation instructions: https://jupyter.readthedocs.io/en/latest/install.html. 
 
