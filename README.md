@@ -1,5 +1,5 @@
 # Predicting Insurance Status and Risk of Breast Cancer
-For this project, data scientists at Civis Analytics trained and tested two different models. One model predicts the likelihood that an individual is uninsured. The other model predicts the likelihood that a woman is at-risk of developing breast cancer. We then use this information to create a map of Chicago that highlights areas where women who are uninsured and/or have a high risk of breast cancer reside. The results of this project allow the Chicago Department of Public Health to conduct a targeted breast cancer screening campaign, so they can ensure that women with the highest likelihood of developing breast cancer and not being insured are getting screened.
+For this project, data scientists at Civis Analytics trained and cross-validated two different models. One model predicts the likelihood that an individual is uninsured. The other model predicts the likelihood that a woman is at-risk of developing breast cancer. We then use this information to create a map of Chicago that highlights areas where there are women who are uninsured and/or have a high risk of breast cancer. The Chicago Department of Public Health can implement the results of this project to conduct a targeted breast cancer screening campaign, so that women with the highest likelihood of developing breast cancer and/or not having health insurance are getting screened.
 
 ***A cross-validation study has shown that this model correctly predicts consecutive results for WNV virus about 80 percent of the time.
 
@@ -7,8 +7,8 @@ This GitHub repository provides all of the source code used to develop the model
 
 ## Data 
 We utilized three datasets in this project:
-1. Proprietary data used by Civis Analytics for modeling
-2. Responses from a survey conducted  from October to November 2017 by Civis Analytics
+1. Proprietary modeling data from Civis Analytics
+2. Responses from a survey conducted from October to November 2017 by Civis Analytics
 3. Behavioral Risk Factor Surveillance System (BRFSS) 2016 data, which is publicly available at: https://www.cdc.gov/brfss/annual_data/annual_2016.html
 
 Only the de-identified survey response data is available in this repository. The BRFSS 2016 data can be accessed via the link above. 
@@ -17,7 +17,7 @@ Only the de-identified survey response data is available in this repository. The
 
 To prepare the data for modeling, we matched the survey responses we collected to Civis Analytics’s proprietary data. We then recoded the BRFSS 2016 data and appended it to our data. A R script to clean and recode the BRFSS 2016 data is available in this repository (“BRFSS 2016 ETL.R”). 
 
-We then used SEER 2010-2012 data (Table 4.17; https://seer.cancer.gov/archive/csr/1975_2012/results_merged/topic_lifetime_risk.pdf) to identify baseline risk values for breast cancer based off age and race. Using demographic information in Civis Analytics’s proprietary data, we were able to assign each individual in our data set one of these baseline risk values. We also assigned relative risk values to each survey response by drawing on academic studies of breast cancer risk factors. We then multiplied the baseline risk values for breast cancer with the relative risk values assigned to each survey response, which resulted in an overall relative risk value for breast cancer. Next, we recoded our breast cancer risk variable to be a binary variable indicating high risk of breast cancer (1) or lower risk of breast cancer (0). We used a relative risk value of 0.05 as our cutoff, as this is approximately double the median baseline risk for breast cancer.
+We then used SEER 2010-2012 data (Table 4.17; https://seer.cancer.gov/archive/csr/1975_2012/results_merged/topic_lifetime_risk.pdf) to identify baseline risk values for breast cancer based off age and race. Using demographic information in Civis Analytics’s proprietary data, we were able to assign one of these baseline risk values to each individual in our data set. We also assigned relative risk values to each survey response by drawing on academic studies of breast cancer risk factors. We then multiplied the baseline risk values for breast cancer with the relative risk values assigned to each survey response, which resulted in an overall relative risk value for breast cancer. Next, we recoded our breast cancer risk variable to be a binary variable indicating high risk of breast cancer (1) or lower risk of breast cancer (0). We used a relative risk value of 0.05 as our cutoff, as this is approximately double the median baseline risk for breast cancer.
 
 
 ## Model
@@ -32,7 +32,7 @@ We used a sparse logistic model to predict an individual’s likelihood of havin
 For both models, we looked at the ROC AUC curves to identify the best performing model, and we used this value to evaluate the performance of both models.
 
 Overall, the “success rate” or number of individuals classified correctly depends on what is chosen as the cutoff for who is uninsured, or who is at a high risk of breast cancer. As the goal of this project is to inform a targeted campaign for breast cancer screening, we chose to cast a broad net. 
-In other words, we tried to capture more positive results, which also led us to capture more individuals who may not be uninsured or have a high risk of breast cancer. Thus, we privileged the [PRECISION / RECALL] over the [PRECISION / RECALL] of the model. 
+Thus, we tried to capture more positive results, which also led us to capture more individuals who may not be uninsured or have a high risk of breast cancer. In other words, we emphasized the recall of the models when determining the cutoffs.
 
 We set the cutoff for the health insurance model at 0.5, and we set the cutoff for breast cancer risk at [WHAT IS THE CUTOFF]. This allowed us to capture as many people as possible who were uninsured or at risk of breast cancer as possible. 
 
