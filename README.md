@@ -17,8 +17,9 @@ Only the de-identified survey response data is available in this repository. The
 
 To prepare the data for modeling, we matched the survey responses we collected to Civis Analytics’s proprietary data. We then recoded the BRFSS 2016 data and appended it to our data. A R script to clean and recode the BRFSS 2016 data is available in this repository (“BRFSS 2016 ETL.R”). 
 
-We then used SEER 2010-2012 data (Table 4.17; https://seer.cancer.gov/archive/csr/1975_2012/results_merged/topic_lifetime_risk.pdf) to identify baseline risk values for breast cancer based off age and race. Using demographic information in Civis Analytics’s proprietary data, we were able to assign one of these baseline risk values to each individual in our data set. We also assigned relative risk values to each survey response by drawing on academic studies of breast cancer risk factors. We then multiplied the baseline risk values for breast cancer with the relative risk values assigned to each survey response, which resulted in an overall relative risk value for breast cancer. Next, we recoded our breast cancer risk variable to be a binary variable indicating high risk of breast cancer (1) or lower risk of breast cancer (0). We used a relative risk value of 0.05 as our cutoff, as this is approximately double the median baseline risk for breast cancer.
+We then used SEER 2010-2012 data to identify baseline risk values for breast cancer based off age and race. Using demographic information in Civis Analytics’s proprietary data, we were able to assign one of these baseline risk values to each individual in our data set. We also assigned relative risk values to each survey response by drawing on academic studies of breast cancer risk factors. We then multiplied the baseline risk values for breast cancer with the relative risk values assigned to each survey response, which resulted in an overall relative risk value for breast cancer. Next, we recoded our breast cancer risk variable to be a binary variable indicating high risk of breast cancer (1) or lower risk of breast cancer (0). We used a relative risk value of 0.05 as our cutoff, as this is approximately double the median baseline risk for breast cancer.
 
+SEER 2010-2012 data available at: https://seer.cancer.gov/archive/csr/1975_2012/results_merged/topic_lifetime_risk.pdf (Table 4.17)
 
 ## Model
 For both our uninsured and breast cancer risk models, we trained and tested multiple models using Civis Analytics’s proprietary software, CivisML, to find the best performing ones.
@@ -29,7 +30,7 @@ We used a sparse logistic model to predict an individual’s likelihood of havin
 
 
 ## Model Performance
-For both models, we looked at the ROC AUC curves to identify the best performing model, and we used this value to evaluate the performance of both models.
+For both models, we looked at the ROC AUC to identify the best performing model, and we used this value to evaluate the performance of both models.
 
 Overall, the “success rate” or number of individuals classified correctly depends on what is chosen as the cutoff for who is uninsured, or who is at a high risk of breast cancer. As the goal of this project is to inform a targeted campaign for breast cancer screening, we chose to cast a broad net. 
 Thus, we tried to capture more positive results, which also led us to capture more individuals who may not be uninsured or have a high risk of breast cancer. In other words, we emphasized the recall of the models when determining the cutoffs.
