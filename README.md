@@ -1,6 +1,10 @@
 # Predicting Insurance Status and Risk of Breast Cancer
 For this project, data scientists at Civis Analytics trained and cross-validated multiple classifier models. We used our models to predict the likelihood that a woman is uninsured, as well as the likelihood that a woman is at-risk of developing breast cancer. We then used this information to create a map of Chicago that highlights areas where there are likely to be women who are uninsured and/or have a high risk of breast cancer. The Chicago Department of Public Health can operationalize the results of this project to conduct a targeted breast cancer screening campaign, so that women with the highest likelihood of developing breast cancer and/or not having health insurance are getting screened.
 
+A screenshot of the interactive map we produced:
+![alt text](https://raw.githubusercontent.com/cwang23/CDPH-Breast-Cancer-Project/master/screenshot_ShinyAppMap.png)
+
+
 This GitHub repository provides all of the source code used to develop the model as well as create the map visualizations. Some of the data used in this project are also available in this repository. However, this code relies heavily on proprietary data and software that belong to Civis Analytics, so it cannot be executed without these resources. Furthermore, much of the code has been altered to protect such proprietary information. Nevertheless, it is still possible to review the code and understand the methodology we used to arrive at our results. 
 
 ## Data 
