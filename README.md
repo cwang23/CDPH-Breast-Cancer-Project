@@ -30,7 +30,7 @@ For our breast cancer risk model, we used a random forest classifier for the ind
 
 
 ## Model Performance
-For both models, we looked at the ROC curve to evaluate each model and identify the best performing model.
+For both models, we looked at the ROC curve to evaluate each model's performance and identify the best ones.
 
 For the extra trees classifier model we used to predict health insurance status at the individual level, the ROC AUC was 0.719. For the sparse logistic model we used to predict health insurance status at the geographic level, the ROC AUC was 0.664.
 
@@ -48,13 +48,15 @@ We used Jupyter Notebooks to write and run our Python 3 code. Jupyter Notebooks 
 
 “uninsured2017_modeling.ipynb” and “bcrisk2017_modeling.ipynb” are written in Python 3 and are Jupyter Notebooks. Both notebooks have thorough explanations of the code, and you can step through their processes cell by cell. However, you cannot fully run these notebooks, as they rely heavily on proprietary data and software from Civis Analytics. 
 
-You should go through the scripts in the following order:
+We worked through the scripts in the following order:
 1) BRFSS2016_ETL.R
-2) MapData_ETL.R -- Step 1
+2) MapData_ETL.R -- (Step 1)
 3) uninsured2017_modeling.ipynb
 4) bcrisk2017_modeling.ipynb
-5) MapData_ETL.R -- Step 2
-6) ShinyMappApp.R
+5) MapData_ETL.R -- (Step 2)
+6) ShinyMapApp.R
+
+For individuals who are only interested in visualizing our results, you can produce our interactive map of Chicago by downloading the "cdph_mapping.Rdata" and running the "ShinyMapApp.R" script.
 
 
 ## System Requirements
