@@ -5,7 +5,7 @@ Below is a screenshot of the interactive map we produced:
 ![](screenshot_ShinyAppMap.png)
 
 
-This GitHub repository provides all of the source code used to develop the model as well as create the map visualizations. Some of the data used in this project are also available in this repository. However, this code relies heavily on proprietary data and software that belong to Civis Analytics, so it cannot be executed without these resources. Furthermore, much of the code has been altered to protect such proprietary information. Nevertheless, it is still possible to review the code and understand the methodology we used to arrive at our results. 
+This GitHub repository provides all of the source code used to develop the model as well as create the map visualization. Some of the data used in this project are also available in this repository. However, this code relies heavily on proprietary data and software that belong to Civis Analytics, so it cannot be executed without these resources. Furthermore, much of the code has been altered to protect such proprietary information. Nevertheless, it is still possible to review the code and understand the methodology we used to arrive at our results. 
 
 ## Data 
 We utilized three datasets in this project:
