@@ -13,9 +13,9 @@ We utilized three datasets in this project:
 2. Responses from a survey conducted from October to November 2017 by Civis Analytics
 3. Behavioral Risk Factor Surveillance System (BRFSS) 2016 data, which is publicly available at: https://www.cdc.gov/brfss/annual_data/annual_2016.html
 
-Only the de-identified survey response data from female participants (cdph_survey2017.csv) is available in this repository. The BRFSS 2016 data can be accessed via the link above. 
+Only the de-identified survey response data from female participants (female_survey_data.csv) is available in this repository. The BRFSS 2016 data can be accessed via the link above. 
 
-5,497 individuals participated in our survey, of which 59% were female and 41% were male. We asked participants about their insurance status. We also asked a battery of questions related to breast cancer risk factors as identified by the Centers for Disease Control (CDC) (https://www.cdc.gov/cancer/breast/basic_info/risk_factors.htm) and Cancer Treatment Centers of America (https://www.cancercenter.com/breast-cancer/risk-factors/). 
+3,147 females participated in our survey and provided adequate response data. We asked participants about their insurance status, as well as a battery of questions related to breast cancer risk factors as identified by the Centers for Disease Control (CDC) (https://www.cdc.gov/cancer/breast/basic_info/risk_factors.htm) and Cancer Treatment Centers of America (https://www.cancercenter.com/breast-cancer/risk-factors/). 
 
 To prepare the data for modeling, we matched the survey responses we collected to Civis Analytics’s proprietary data. We then recoded the BRFSS 2016 data and appended it to our data. A R script to clean and recode the BRFSS 2016 data is available in this repository (“BRFSS2016_ETL.R”). 
 
