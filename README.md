@@ -44,9 +44,17 @@ The R programming language is free and available for download at https://cran.r
 
 We used Jupyter Notebooks to write and run our Python 3 code. Jupyter Notebooks allows you to run your code cell by cell, so that it can be broken up into small chunks. Python 3 and Jupyter Notebooks can be installed on your machine for free by downloading Anaconda. This link has installation instructions: https://jupyter.readthedocs.io/en/latest/install.html. 
 
-“BRFSS2016_ETL.R” is written in R. To run this code, you can download the BRFSS 2016 data into a directory, and then set this directory as your working directory in your R session.
+“BRFSS2016_ETL.R”, "MapData_ETL.R", and "ShinyMapApp.R" are all written in R. To run these scripts, you should download the provided CSV files and Rdata (i.e. "cdph_mapping.Rdata") into a directory, and then set this directory as your working directory in your R session.
 
 “uninsured2017_modeling.ipynb” and “bcrisk2017_modeling.ipynb” are written in Python 3 and are Jupyter Notebooks. Both notebooks have thorough explanations of the code, and you can step through their processes cell by cell. However, you cannot fully run these notebooks, as they rely heavily on proprietary data and software from Civis Analytics. 
+
+You should go through the scripts in the following order:
+1) BRFSS2016_ETL.R
+2) MapData_ETL.R -- Step 1
+3) uninsured2017_modeling.ipynb
+4) bcrisk2017_modeling.ipynb
+5) MapData_ETL.R -- Step 2
+6) ShinyMappApp.R
 
 
 ## System Requirements
