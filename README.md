@@ -14,9 +14,9 @@ We utilized three datasets in this project:
 2. Responses from a survey conducted from October to November 2017 by Civis Analytics
 3. Behavioral Risk Factor Surveillance System (BRFSS) 2016 data, which is publicly available at: https://www.cdc.gov/brfss/annual_data/annual_2016.html
 
-We also used publicly available data about breast cancer incidence rates in Chicago to do a rough validation of our model. The data is available at this link: http://www.idph.state.il.us/cancer/statistics.htm.
+Only the de-identified survey response data from female participants (female_survey_data.csv) is available in this repository. 
 
-Only the de-identified survey response data from female participants (female_survey_data.csv) is available in this repository. The BRFSS 2016 data can be accessed via the link above. 
+We also used publicly available data about breast cancer incidence rates in Chicago (CA0514.dat) to do a rough validation of our model. The data can be downloaded from this repository, or at this link: http://www.idph.state.il.us/cancer/statistics.htm.
 
 3,147 females participated in our survey and provided adequate response data. We asked participants about their insurance status, as well as a battery of questions related to breast cancer risk factors as identified by the Centers for Disease Control (CDC) (https://www.cdc.gov/cancer/breast/basic_info/risk_factors.htm) and Cancer Treatment Centers of America (https://www.cancercenter.com/breast-cancer/risk-factors/). 
 
