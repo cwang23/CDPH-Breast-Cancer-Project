@@ -40,6 +40,8 @@ For the extra trees classifier model we used to predict health insurance status 
 
 For the breast cancer risk models, the random forest classifier model we trained on individual level data had a ROC AUC of 0.806. The sparse logistic model we used for the geographic-level model had an AUC of 0.552.
 
+The ROC AUCs for the geographic-level models arelower than the individual-level ones, which is what we expect. The lower ROC AUCs are an artifact of using a binomial likelihood for the dependent variable (i.e. the survey responses coded as 0/1), which are not an accurate illustration of expected error. 
+
 
 ## How to Run the Code
 Python 3 and the R programming language were used to develop both models.
