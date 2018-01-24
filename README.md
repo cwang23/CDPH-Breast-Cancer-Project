@@ -1,5 +1,5 @@
 # Predicting Insurance Status and Risk of Breast Cancer
-For this project, data scientists at Civis Analytics trained and cross-validated multiple classifier models. We used our models to predict the likelihood that a woman is uninsured, as well as the likelihood that a woman is at-risk of developing breast cancer. We then used this information to create a map of Chicago that highlights areas where there are likely to be women who are uninsured and/or have a high risk of breast cancer. The Chicago Department of Public Health can operationalize the results of this project to conduct a targeted breast cancer screening campaign, so that women with the highest likelihood of developing breast cancer and/or not having health insurance are getting screened.
+For this project, data scientists at Civis Analytics trained and cross-validated multiple classifier models. We used our models to predict the likelihood that a woman is uninsured, as well as the likelihood that a woman is at-risk of developing breast cancer. We then used this information to create a chloropleth map of Chicago that highlights areas where there are likely to be women who are uninsured and/or have a high risk of breast cancer. The Chicago Department of Public Health can operationalize the results of this project to conduct a targeted breast cancer screening campaign, so that women with the highest likelihood of developing breast cancer and/or not having health insurance are getting screened.
 
 Below is a screenshot of the interactive map we produced:
 ![](screenshot_ShinyAppMap.png)
@@ -7,11 +7,14 @@ Below is a screenshot of the interactive map we produced:
 
 This GitHub repository provides all of the source code used to develop the model as well as create the map visualization. Some of the data used in this project are also available in this repository. However, this code relies heavily on proprietary data and software that belong to Civis Analytics, so it cannot be executed without these resources. Furthermore, much of the code has been altered to protect such proprietary information. Nevertheless, it is still possible to review the code and understand the methodology we used to arrive at our results. 
 
+
 ## Data 
 We utilized three datasets in this project:
 1. Proprietary modeling data from Civis Analytics
 2. Responses from a survey conducted from October to November 2017 by Civis Analytics
 3. Behavioral Risk Factor Surveillance System (BRFSS) 2016 data, which is publicly available at: https://www.cdc.gov/brfss/annual_data/annual_2016.html
+
+We also used publicly available data about breast cancer incidence rates in Chicago to do a rough validation of our model. The data is available at this link: http://www.idph.state.il.us/cancer/statistics.htm.
 
 Only the de-identified survey response data from female participants (female_survey_data.csv) is available in this repository. The BRFSS 2016 data can be accessed via the link above. 
 
@@ -23,14 +26,15 @@ We then used SEER 2010-2012 data to identify baseline risk values for breast can
 
 SEER 2010-2012 data available at: https://seer.cancer.gov/archive/csr/1975_2012/results_merged/topic_lifetime_risk.pdf (Table 4.17)
 
+
 ## Model
 For both our uninsured and breast cancer risk models, we trained and tested multiple models using Civis Analytics’s proprietary software, CivisML, to find the best performing ones.
 
-We used a two-step modeling process to avoid a reverse ecological fallacy problem, or an exception fallacy, which is when one makes an inaccurate conclusion about a group of people based off a few exceptional cases. For the first step in our workflow, we trained a model on individual-level data, where each row was a person. In the second step, we trained a model on geographic-level data, where we used the same features as the individual-level model but we aggregated the values by our geographic-level of interest (in this case, Census tracts). We then used our geographic-level model to predict the proportion of women who are uninsured and/or at-risk of developing breast cancer in each Census tract in Chicago. We took weighted averages of these values to calculate the proportion of women who are uninsured and/or at-risk of developing breast cancer in each Chicago Community Area. 
+We used a two-step modeling process to avoid a reverse ecological fallacy problem, or an exception fallacy, which is when one makes an inaccurate conclusion about a group of people based off a few exceptional cases. For the first step in our workflow, we trained a model on individual-level data, where each row was a person. We then used this model to score an individual-level table of adult females in the US. In the second step, we trained a model on geographic-level data, where we used the same features as the individual-level model but we aggregated the values by our geographic-level of interest (in this case, Census tracts). We also appended on the predictions output by the individual-level model, aggregated by Census tract. We added this column or feature to both the training set and scoring table for our geographic-level model. After identifying the best-performing geographic-level model, we used it to predict the proportion of women who are uninsured and/or at-risk of developing breast cancer in each Census tract in Chicago. We took the averages of these values, weighted by tract population, to calculate the proportion of women who are uninsured and/or at-risk of developing breast cancer in each Chicago Community Area. 
 
 For our uninsured model, we used an extra trees classifier for the individual-level model, and then we used a sparse logistic model for the geographic-level model. The features in these two models included proprietary data from Civis Analytics, such as an individual’s past history of health insurance.
 
-For our breast cancer risk model, we used a random forest classifier for the individual-level model, and we also used a sparse logistic model for the geographic-level model. We appended BRFSS 2016 data to our modeling data to improve the model performance. Thus, to reduce the redundancy in the information captured by some of the variables, we limited the features we used to train our model to those with the most predictive value. 
+For our breast cancer risk model, we used a random forest classifier for the individual-level model, and we also used a sparse logistic model for the geographic-level model. We appended BRFSS 2016 data to our modeling data to add more features related to health. Some of these appended features were similar to existing information in our modeling data, so to reduce redundancy in our data and the amount of compute power required, we limited the features we used to train our model to those with the most predictive value. 
 
 
 ## Model Performance
@@ -38,9 +42,13 @@ For both models, we looked at the ROC curve to evaluate each model's performance
 
 For the extra trees classifier model we used to predict health insurance status at the individual level, the ROC AUC was 0.719. For the sparse logistic model we used to predict health insurance status at the geographic level, the ROC AUC was 0.664.
 
-For the breast cancer risk models, the random forest classifier model we trained on individual level data had a ROC AUC of 0.806. The sparse logistic model we used for the geographic-level model had an AUC of 0.552.
+For the breast cancer risk models, the random forest classifier model we trained on individual level data had a ROC AUC of 0.806. The sparse logistic model we used for the geographic-level model had a ROC AUC of 0.552.
 
-The ROC AUCs for the geographic-level models arelower than the individual-level ones, which is what we expect. The lower ROC AUCs are an artifact of using a binomial likelihood for the dependent variable (i.e. the survey responses coded as 0/1), which are not an accurate illustration of expected error. 
+The ROC AUCs for the geographic-level models are lower than the individual-level ones, which is as we expected. These lower ROC AUCs are an artifact of using a binomial likelihood for the dependent variable (i.e. the survey responses coded as 0/1), which are not an accurate illustration of expected error. 
+
+We also conducted a rough validation of our model for breast cancer risk using publicly-available data about breast cancer incidence in Chicago. We calculated the root-mean-square error (RMSE) of our predicted values compared to the true incidence rates for each community area, as well as the correlation between our predicted values and the true incidence rates. 
+
+We calculated a RMSE of 2,563.85, and a correlation of 0.94. The high RMSE is expected, as our model predicts the population of women at-risk of developing breast cancer, rather than true incidence. The high correlation indicates that our predicted values for the population of women at-risk of developing breast cancer across Community Areas follows the trend in breast cancer incidence across Community Areas. Thus, our model appears to reflect the variance in breast cancer incidence across Chicago Community Areas relatively well. 
 
 
 ## How to Run the Code
