@@ -26,6 +26,8 @@ We then used SEER 2010-2012 data from the National Cancer Institute (NCI) to ide
 
 NCI SEER 2010-2012 data available at: https://seer.cancer.gov/archive/csr/1975_2012/results_merged/topic_lifetime_risk.pdf (Table 4.17)
 
+We also used shapefiles provided by the City of Chicago to create our maps. The shapefiles are located in the folders that begin with "Boundaries - " in this GitHub repository, but they can also be downloaded from the following link: https://www.cityofchicago.org/city/en/depts/doit/provdrs/gis.html.
+
 
 ## Model
 For both our uninsured and breast cancer risk models, we trained and tested multiple models using Civis Analytics’s proprietary software, CivisML, to find the best performing ones.
