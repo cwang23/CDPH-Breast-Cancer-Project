@@ -7,6 +7,10 @@
 ## ----------------------------< Prepare Workspace >------------------------------------
 rm(list = ls())  # clear workspace
 
+install.packages(c('leaflet',
+                   'shinythemes'),
+                 repos='https://cran.rstudio.com/')
+
 ## load necessary packages
 library(shiny)        # version 1.0.5
 library(leaflet)      # version 1.1.0
