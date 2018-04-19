@@ -15,7 +15,6 @@ install.packages(c('leaflet',
 library(shiny)        # version 1.0.5
 library(leaflet)      # version 1.1.0
 library(shinythemes)  # version 1.1.1
-library(rsconnect)    # version 0.8.5
 
 #           "viridis",      # version 0.4.0
  
