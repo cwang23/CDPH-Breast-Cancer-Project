@@ -7,30 +7,14 @@
 ## ----------------------------< Prepare Workspace >------------------------------------
 rm(list = ls())  # clear workspace
 
-## set working directory
-wd <- "~/Desktop/CDPH_breastcancer"  # working directory; data should be here (i.e. "cdph_mapping.Rdata")
-setwd(wd)
+## load necessary packages
+library(shiny)        # version 1.0.5
+library(leaflet)      # version 1.1.0
+library(shinythemes)  # version 1.1.1
+library(rsconnect)    # version 0.8.5
 
-## necessary packages
-packages = c("shiny",        # version 1.0.5
-             "leaflet",      # version 1.1.0
-             "shinythemes",  # version 1.1.1
-             "viridis",      # version 0.4.0
-             "rsconnect"     # version 0.8.5
-             )
-
-## function to load packages; if not installed already will install package first
-loadPackage <- function(pkg){
-  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
-  if (length(new.pkg))
-    install.packages(new.pkg, dependencies = TRUE)
-  sapply(pkg, require, character.only = TRUE)
-}
-
-## loop through necessary packages and install/load
-for(package in packages){
-  loadPackage(package)
-}
+#           "viridis",      # version 0.4.0
+ 
 
 ## load data for map -- this has to be in the same directory as your working directory
 load("cdph_mapping.Rdata")
@@ -175,7 +159,7 @@ server <- function(input, output, session){
         options = layersControlOptions(collapsed = FALSE))
   })
   
-  session$allowReconnect(TRUE)
+  session$allowReconnect("force")
 }
 
 
