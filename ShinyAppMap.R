@@ -5,7 +5,7 @@
 ## R version 3.4.2
 
 ## ----------------------------< Prepare Workspace >------------------------------------
-rm(list = ls())  # clear workspace
+#rm(list = ls())  # clear workspace
 
 install.packages(c('leaflet',
                    'shinythemes'),
